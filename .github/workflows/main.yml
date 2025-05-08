@@ -10,4 +10,5 @@ jobs:
       uses: cypress-io/github-action@v6.5.0
       with:
        strat: npm start
+
     

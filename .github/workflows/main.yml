@@ -1,0 +1,28 @@
+name: Ejecución Programada de Pruebas
+
+on:
+  schedule:
+    - cron: '55 17 * * *'  # Ejecuta todos los días a las 8 AM UTC (ajusta según https://crontab.guru/)
+  workflow_dispatch:  # Permite ejecución manual
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start  # Comando para iniciar tu app (ajústalo)
+          wait-on: 'http://localhost:3000'  # URL de tu app
+          browser: chrome

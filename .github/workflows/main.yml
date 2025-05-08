@@ -9,6 +9,6 @@ jobs:
     - name: Cypress.io
       uses: cypress-io/github-action@v6.5.0
       with:
-       strat: npm start
+       strat: npx cypress open
 
     

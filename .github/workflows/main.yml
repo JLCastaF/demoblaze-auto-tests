@@ -1,20 +1,22 @@
 name: Cypress Test
 
-on: [push]
- 
+on: [push, workflow_dispatch]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # Versión actualizada
+        uses: actions/checkout@v4
 
+  
+      # Opción 2 (alternativa): Usa npm install
       - name: Install dependencies
-        run: npm ci  # Mejor que 'npm install' para CI
+        run: npm install
 
       - name: Run Cypress
-        uses: cypress-io/github-action@v6  # Versión actualizada
+        uses: cypress-io/github-action@v6
         with:
-          start: npm start  # Comando para iniciar tu app
-          wait-on: "http://localhost:3000"  # ¡Añade esto! Cambia el puerto si es necesario
-          browser: chrome  # Recomendado explícitamente
+          start: npm start
+          wait-on: "http://localhost:3000"
+          browser: chrome
